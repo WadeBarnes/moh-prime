@@ -44,9 +44,9 @@ namespace Prime.Controllers
             _adminService = adminService;
         }
 
-        // GET: api/Sites
+        // GET: api/organizations/5/sites
         /// <summary>
-        /// Gets all of the Sites for an organization, or all sites if user has ADMIN role
+        /// Gets all of the Sites for an Organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="verbose"></param>
@@ -55,8 +55,10 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiResultResponse<IEnumerable<Site>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<IEnumerable<SiteListViewModel>>), StatusCodes.Status200OK)]
         public async Task<ActionResult> GetSites(int organizationId, [FromQuery] bool verbose)
         {
+            // TODO: Org exists + security
             var organization = await _organizationService.GetOrganizationAsync(organizationId);
             if (organization == null)
             {
@@ -100,7 +102,7 @@ namespace Prime.Controllers
             return Ok(site);
         }
 
-        // POST: api/Sites
+        // POST: api/organizations/5/sites
         /// <summary>
         /// Creates a new Site.
         /// <param name="organizationId"></param>
@@ -234,7 +236,7 @@ namespace Prime.Controllers
                 return NotFound($"Site not found with id {siteId}.");
             }
 
-            Admin admin = (adjudicatorId.HasValue)
+            Admin admin = adjudicatorId.HasValue
                 ? await _adminService.GetAdminAsync(adjudicatorId.Value)
                 : await _adminService.GetAdminAsync(User.GetPrimeUserId());
 

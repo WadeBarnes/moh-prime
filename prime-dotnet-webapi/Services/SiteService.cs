@@ -38,9 +38,9 @@ namespace Prime.Services
             _documentClient = documentClient;
         }
 
-        public async Task<IEnumerable<Site>> GetSitesAsync(int? organizationId = null)
+        public async Task<IEnumerable<CommunitySite>> GetSitesAsync(int? organizationId = null)
         {
-            IQueryable<Site> query = GetBaseSiteQuery();
+            IQueryable<CommunitySite> query = GetBaseSiteQuery();
 
             if (organizationId != null)
             {
@@ -50,7 +50,7 @@ namespace Prime.Services
             return await query.ToListAsync();
         }
 
-        public async Task<Site> GetSiteAsync(int siteId)
+        public async Task<CommunitySite> GetSiteAsync(int siteId)
         {
             return await GetBaseSiteQuery()
                 .SingleOrDefaultAsync(s => s.Id == siteId);
@@ -66,7 +66,7 @@ namespace Prime.Services
             }
 
             // Site provisionerId should be equal to organization signingAuthorityId
-            var site = new Site
+            var site = new CommunitySite
             {
                 ProvisionerId = organization.SigningAuthorityId,
                 OrganizationId = organization.Id,
@@ -114,7 +114,7 @@ namespace Prime.Services
             }
         }
 
-        private void UpdateAddress(Site current, SiteUpdateModel updated)
+        private void UpdateAddress(CommunitySite current, SiteUpdateModel updated)
         {
             if (updated?.PhysicalAddress != null)
             {
@@ -129,7 +129,7 @@ namespace Prime.Services
             }
         }
 
-        private void UpdateContacts(Site current, SiteUpdateModel updated)
+        private void UpdateContacts(CommunitySite current, SiteUpdateModel updated)
         {
             var contactTypes = new[]
             {
@@ -167,7 +167,7 @@ namespace Prime.Services
             }
         }
 
-        private void UpdateBusinessHours(Site current, SiteUpdateModel updated)
+        private void UpdateBusinessHours(CommunitySite current, SiteUpdateModel updated)
         {
             if (updated?.BusinessHours != null)
             {
@@ -187,7 +187,7 @@ namespace Prime.Services
             }
         }
 
-        private void UpdateRemoteUsers(Site current, SiteUpdateModel updated)
+        private void UpdateRemoteUsers(CommunitySite current, SiteUpdateModel updated)
         {
             // Wholesale replace the remote users
             foreach (var remoteUser in current.RemoteUsers)
@@ -225,7 +225,7 @@ namespace Prime.Services
             }
         }
 
-        private void UpdateVendors(Site current, SiteUpdateModel updated)
+        private void UpdateVendors(CommunitySite current, SiteUpdateModel updated)
         {
             if (updated?.SiteVendors != null)
             {
@@ -268,7 +268,7 @@ namespace Prime.Services
             return updated;
         }
 
-        public async Task<Site> UpdateSiteAdjudicator(int siteId, int? adminId = null)
+        public async Task<CommunitySite> UpdateSiteAdjudicator(int siteId, int? adminId = null)
         {
             var site = await _context.Sites.Where(s => s.Id == siteId).SingleOrDefaultAsync();
             site.AdjudicatorId = adminId;
@@ -277,7 +277,7 @@ namespace Prime.Services
             return site;
         }
 
-        public async Task<Site> UpdatePecCode(int siteId, string pecCode)
+        public async Task<CommunitySite> UpdatePecCode(int siteId, string pecCode)
         {
             var site = await GetBaseSiteQuery()
                 .SingleOrDefaultAsync(s => s.Id == siteId);
@@ -323,7 +323,7 @@ namespace Prime.Services
             }
         }
 
-        public async Task<Site> ApproveSite(int siteId)
+        public async Task<CommunitySite> ApproveSite(int siteId)
         {
             var site = await _context.Sites.SingleOrDefaultAsync(s => s.Id == siteId);
 
@@ -339,7 +339,7 @@ namespace Prime.Services
             return site;
         }
 
-        public async Task<Site> DeclineSite(int siteId)
+        public async Task<CommunitySite> DeclineSite(int siteId)
         {
             var site = await _context.Sites.SingleOrDefaultAsync(s => s.Id == siteId);
             site.AddStatus(SiteStatusType.Locked);
@@ -351,7 +351,7 @@ namespace Prime.Services
             return site;
         }
 
-        public async Task<Site> UnrejectSite(int siteId)
+        public async Task<CommunitySite> UnrejectSite(int siteId)
         {
             var site = await _context.Sites.SingleOrDefaultAsync(s => s.Id == siteId);
             site.AddStatus(SiteStatusType.InReview);
@@ -362,7 +362,7 @@ namespace Prime.Services
             return site;
         }
 
-        public async Task<Site> EnableEditingSite(int siteId)
+        public async Task<CommunitySite> EnableEditingSite(int siteId)
         {
             var site = await _context.Sites.SingleOrDefaultAsync(s => s.Id == siteId);
             site.SubmittedDate = null;
@@ -387,7 +387,7 @@ namespace Prime.Services
             }
         }
 
-        public async Task<Site> SubmitRegistrationAsync(int siteId)
+        public async Task<CommunitySite> SubmitRegistrationAsync(int siteId)
         {
             var site = await GetSiteAsync(siteId);
             site.SubmittedDate = DateTimeOffset.Now;
@@ -405,7 +405,7 @@ namespace Prime.Services
             return site;
         }
 
-        public async Task<Site> GetSiteNoTrackingAsync(int siteId)
+        public async Task<CommunitySite> GetSiteNoTrackingAsync(int siteId)
         {
             return await GetBaseSiteQuery()
                 .AsNoTracking()
@@ -568,7 +568,7 @@ namespace Prime.Services
             return SiteRegistrationNote;
         }
 
-        public async Task<IEnumerable<SiteRegistrationNoteViewModel>> GetSiteRegistrationNotesAsync(Site site)
+        public async Task<IEnumerable<SiteRegistrationNoteViewModel>> GetSiteRegistrationNotesAsync(CommunitySite site)
         {
             return await _context.SiteRegistrationNotes
                 .Where(srn => srn.SiteId == site.Id)
@@ -711,7 +711,7 @@ namespace Prime.Services
         }
 
 
-        private IQueryable<Site> GetBaseSiteQuery()
+        private IQueryable<CommunitySite> GetBaseSiteQuery()
         {
             return _context.Sites
                 .Include(s => s.Provisioner)

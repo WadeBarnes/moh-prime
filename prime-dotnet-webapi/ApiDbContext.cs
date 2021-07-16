@@ -76,7 +76,7 @@ namespace Prime
         // Site Registration
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Party> Parties { get; set; }
-        public DbSet<Site> Sites { get; set; }
+        public DbSet<CommunitySite> Sites { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<RemoteUser> RemoteUsers { get; set; }

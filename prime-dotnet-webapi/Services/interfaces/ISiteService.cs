@@ -8,20 +8,20 @@ namespace Prime.Services
 {
     public interface ISiteService
     {
-        Task<IEnumerable<Site>> GetSitesAsync(int? organizationId = null);
-        Task<Site> GetSiteAsync(int siteId);
+        Task<IEnumerable<CommunitySite>> GetSitesAsync(int? organizationId = null);
+        Task<CommunitySite> GetSiteAsync(int siteId);
         Task<int> CreateSiteAsync(int organizationId);
         Task<int> UpdateSiteAsync(int siteId, SiteUpdateModel updatedSite);
         Task<int> UpdateCompletedAsync(int siteId, bool completed);
-        Task<Site> UpdateSiteAdjudicator(int siteId, int? adminId = null);
-        Task<Site> UpdatePecCode(int siteId, string pecCode);
+        Task<CommunitySite> UpdateSiteAdjudicator(int siteId, int? adminId = null);
+        Task<CommunitySite> UpdatePecCode(int siteId, string pecCode);
         Task DeleteSiteAsync(int siteId);
-        Task<Site> ApproveSite(int siteId);
-        Task<Site> DeclineSite(int siteId);
-        Task<Site> UnrejectSite(int siteId);
-        Task<Site> EnableEditingSite(int siteId);
-        Task<Site> SubmitRegistrationAsync(int siteId);
-        Task<Site> GetSiteNoTrackingAsync(int siteId);
+        Task<CommunitySite> ApproveSite(int siteId);
+        Task<CommunitySite> DeclineSite(int siteId);
+        Task<CommunitySite> UnrejectSite(int siteId);
+        Task<CommunitySite> EnableEditingSite(int siteId);
+        Task<CommunitySite> SubmitRegistrationAsync(int siteId);
+        Task<CommunitySite> GetSiteNoTrackingAsync(int siteId);
         Task<IEnumerable<BusinessEvent>> GetSiteBusinessEvents(int siteId);
         Task<BusinessLicence> AddBusinessLicenceAsync(int siteId, BusinessLicence businessLicence, Guid documentGuid);
         Task<BusinessLicence> UpdateBusinessLicenceAsync(int siteId, BusinessLicence updateBusinessLicence);
@@ -32,7 +32,7 @@ namespace Prime.Services
         Task<IEnumerable<SiteAdjudicationDocument>> GetSiteAdjudicationDocumentsAsync(int siteId);
         Task<SiteRegistrationNote> CreateSiteRegistrationNoteAsync(int siteId, string note, int adminId);
         Task<IEnumerable<RemoteAccessSearchViewModel>> GetRemoteUserInfoAsync(IEnumerable<CertSearchViewModel> certs);
-        Task<IEnumerable<SiteRegistrationNoteViewModel>> GetSiteRegistrationNotesAsync(Site site);
+        Task<IEnumerable<SiteRegistrationNoteViewModel>> GetSiteRegistrationNotesAsync(CommunitySite site);
         Task<IEnumerable<BusinessEvent>> GetSiteBusinessEventsAsync(int siteId, IEnumerable<int> businessEventTypeCodes);
         Task<SiteAdjudicationDocument> GetSiteAdjudicationDocumentAsync(int documentId);
         Task DeleteSiteAdjudicationDocumentAsync(int documentId);

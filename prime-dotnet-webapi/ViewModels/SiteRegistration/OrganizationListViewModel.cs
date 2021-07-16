@@ -41,12 +41,12 @@ namespace Prime.ViewModels
 
             if (Sites.Any(s => s.DoingBusinessAs != null && s.DoingBusinessAs.ToLower().Contains(textSearch)))
             {
-                matchedOn.Add(nameof(Site.DoingBusinessAs));
+                matchedOn.Add(nameof(CommunitySite.DoingBusinessAs));
             }
 
             if (Sites.Any(s => s.PEC != null && s.PEC.ToLower().Contains(textSearch)))
             {
-                matchedOn.Add(nameof(Site.PEC));
+                matchedOn.Add(nameof(CommunitySite.PEC));
             }
 
             return matchedOn;

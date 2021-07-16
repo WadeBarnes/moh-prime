@@ -12,7 +12,7 @@ namespace Prime.Models
         public int Id { get; set; }
         public int SiteId { get; set; }
         [JsonIgnore]
-        public Site Site { get; set; }
+        public CommunitySite Site { get; set; }
         public string DeferredLicenceReason { get; set; }
         public BusinessLicenceDocument BusinessLicenceDocument { get; set; }
 

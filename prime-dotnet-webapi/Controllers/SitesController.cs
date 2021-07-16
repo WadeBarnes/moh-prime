@@ -54,7 +54,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<IEnumerable<Site>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<IEnumerable<CommunitySite>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResultResponse<IEnumerable<SiteListViewModel>>), StatusCodes.Status200OK)]
         public async Task<ActionResult> GetSites(int organizationId, [FromQuery] bool verbose)
         {
@@ -86,7 +86,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> GetSiteById(int siteId)
         {
             var site = await _siteService.GetSiteAsync(siteId);
@@ -111,7 +111,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status201Created)]
         public async Task<ActionResult> CreateSite(int organizationId)
         {
             var organization = await _organizationService.GetOrganizationAsync(organizationId);
@@ -226,7 +226,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> SetSiteAdjudicator(int siteId, [FromQuery] int? adjudicatorId)
         {
             var site = await _siteService.GetSiteAsync(siteId);
@@ -262,7 +262,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> RemoveSiteAdjudicator(int siteId)
         {
             var site = await _siteService.GetSiteAsync(siteId);
@@ -288,7 +288,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> DeleteSite(int siteId)
         {
             var site = await _siteService.GetSiteAsync(siteId);
@@ -314,7 +314,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> SubmitSiteRegistration(int siteId)
         {
             var site = await _siteService.GetSiteAsync(siteId);
@@ -822,7 +822,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> EnableEditingSite(int siteId)
         {
             var site = await _siteService.GetSiteAsync(siteId);
@@ -860,7 +860,7 @@ namespace Prime.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiMessageResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResultResponse<Site>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResultResponse<CommunitySite>), StatusCodes.Status200OK)]
         public async Task<ActionResult> UnrejectSite(int siteId)
         {
             var site = await _siteService.GetSiteAsync(siteId);

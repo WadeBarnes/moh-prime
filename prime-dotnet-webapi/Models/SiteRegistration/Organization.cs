@@ -31,7 +31,7 @@ namespace Prime.Models
         public int SigningAuthorityId { get; set; }
 
         [JsonIgnore]
-        public ICollection<Site> Sites { get; set; }
+        public ICollection<CommunitySite> Sites { get; set; }
 
         [JsonIgnore]
         public ICollection<Agreement> Agreements { get; set; }

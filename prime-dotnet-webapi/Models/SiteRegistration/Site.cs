@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 namespace Prime.Models
 {
     [Table("Site")]
-    public class Site : BaseAuditable
+    public class CommunitySite : BaseAuditable
     {
-        public Site()
+        public CommunitySite()
         {
             // Initialize collections to prevent null exception on computed properties
             // like `Status`
-            this.SiteStatuses = new List<SiteStatus>();
+            SiteStatuses = new List<SiteStatus>();
         }
 
 

@@ -8,8 +8,7 @@ using Newtonsoft.Json;
 
 namespace Prime.Models
 {
-    [Table("Site")]
-    public class CommunitySite : BaseAuditable
+    public class CommunitySite : Site
     {
         public CommunitySite()
         {

@@ -32,4 +32,3 @@ namespace Prime.ViewModels.Profiles
         }
     }
 }
-s

@@ -11,7 +11,7 @@ namespace Prime.Models
         public int SiteId { get; set; }
 
         [JsonIgnore]
-        public CommunitySite Site { get; set; }
+        public Site Site { get; set; }
 
         [JsonIgnore]
         public SiteNotification SiteNotification { get; set; }

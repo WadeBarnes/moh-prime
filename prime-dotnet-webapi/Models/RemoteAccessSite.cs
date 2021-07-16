@@ -17,6 +17,6 @@ namespace Prime.Models
 
         public int SiteId { get; set; }
 
-        public CommunitySite Site { get; set; }
+        public Site Site { get; set; }
     }
 }

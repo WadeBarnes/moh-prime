@@ -54,11 +54,13 @@ namespace Prime
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // The services are ordered alphabetically assuming the word "Service" is not included
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IAgreementService, AgreementService>();
             services.AddScoped<IAuthorizedUserService, AuthorizedUserService>();
             services.AddScoped<IBannerService, BannerService>();
             services.AddScoped<IBusinessEventService, BusinessEventService>();
+            services.AddScoped<IClientLogService, ClientLogService>();
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddScoped<IDocumentAccessTokenService, DocumentAccessTokenService>();
             services.AddScoped<IEmailService, EmailService>();
@@ -77,10 +79,10 @@ namespace Prime
             services.AddScoped<IMetabaseService, MetabaseService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<IOrganizationAgreementService, OrganizationAgreementService>();
+            services.AddScoped<IOrganizationClaimService, OrganizationClaimService>();
             services.AddScoped<IPartyService, PartyService>();
             services.AddScoped<IPdfService, PdfService>();
             services.AddScoped<IPlrProviderService, PlrProviderService>();
-            services.AddScoped<ISubmissionRulesService, SubmissionRulesService>();
             services.AddScoped<IPrivilegeService, PrivilegeService>();
             services.AddScoped<IRazorConverterService, RazorConverterService>();
             services.AddScoped<ISiteService, SiteService>();

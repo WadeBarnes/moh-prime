@@ -36,8 +36,5 @@ namespace Prime.Models
         [JsonIgnore]
         public CareSetting CareSetting { get; set; }
 
-        public ICollection<SiteVendor> SiteVendors { get; set; }
-
-        public BusinessLicence BusinessLicence { get; set; }
     }
 }
